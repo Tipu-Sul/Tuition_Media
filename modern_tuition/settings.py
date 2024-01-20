@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-%dhtistza=@w6@jqw4def11j!t(m!zr#7jkhn0!vf7f%5h6__6
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
+CSRF_TRUSTED_ORIGINS = ['https://success-tuition.onrender.com','https://*.127.0.0.1']
 
 # Application definition
 

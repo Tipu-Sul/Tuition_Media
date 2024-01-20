@@ -1,0 +1,83 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head_title %}prifile{% endblock %} 
+{% block content %}
+<class="row">
+    <div class="col-lg-8 col-md-8 col-sm-12 mx-auto">
+        <h2>hello {{request.user.first_name}} {{request.user.last_name}}! welcome to profile</h2>
+       
+    <div  class="col-lg-4 col-md-4 col-sm-12 mx-auto d-flex gap-3">
+        <button class="btn btn-info"><a href="{% url 'update' %}">Edit Profile</a></button>
+        <button class="btn btn-info"><a href="{% url 'update_password' %}">Change Password</a></button>
+        <button class="btn btn-info"><a href="{% url 'apply' %}">Apply For Tuition</a></button>
+    </div>
+</div>
+<hr>
+</br>
+</br>
+<div>
+<h3 class="text-center">Student Information</h3>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Image</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for st in data %}
+          <tr>
+            <th scope="row">{{st.id}}</th>
+            <td>{{st.user.first_name}} {{st.user.last_name}}</td>
+            <td>{{st.user.email}}</td>
+            <td>{{st.mobile_no}}</td>
+            <td>{{st.gender}}</td>
+            <td>{{st.image}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+<br>
+<br>
+
+{% if data2 %}
+<div>
+<h3 class="text-center">Tuition Information</h3>
+    <table class="table table-bordered ">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Class Name</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Tuition Status</th>
+            <th scope="col">Approval Status</th>
+            <th scope="col">Teacher</th>
+            <th scope="col">Tuition Review</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for tui in data2 %}
+            {% if tui.is_approved%}
+          <tr>
+            <th scope="row">{{tui.id}}</th>
+            <td>{{tui.student.first_name}} {{tui.student.last_name}}</td>
+            <td>{{tui.class_name}}</td>
+            <td>{{tui.subject}}</td>
+            <td>{{tui.tuition_status}}</td>
+            <td>{{tui.is_approved}}</td>
+            <td>{{tui.subject.teacher.user.first_name}}</td>
+            <td><button class="btn btn-info text-white"><a href="{% url 'review' tui.subject.teacher.user.id%}">Review</a></button></td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+{% endif %}
+{% endblock %}

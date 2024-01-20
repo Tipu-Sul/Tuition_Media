@@ -1,0 +1,49 @@
+{% extends 'base.html' %} 
+
+{% block head_title %}superuser{% endblock %} 
+
+
+{% block content %}
+<class="row">
+    <div class="col-lg-8 col-md-8 col-sm-12 mx-auto">
+        <h2>Hello superuer  {{request.user.username}} {{request.user.last_name}}! welcome to profile</h2>
+       
+    <div  class="col-lg-4 col-md-4 col-sm-12 mx-auto d-flex gap-3">
+        <button class="btn btn-info"><a href="{% url 'add_tuition' %}">Add tuition</a></button>
+    </div>
+</div>
+
+{% if data_3 %}
+<h3>All Tuition Information</h3>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Class</th>
+            <th scope="col">time</th>
+            <th scope="col">Teacher</th>
+            <th scope="col">Teacher's Degree</th>
+            <th scope="col">Fee</th>
+            <th scope="col">Edit Action</th>
+            <th scope="col">Delete Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in data_3%}
+          <tr>
+            <th scope="row">{{i.id}}</th>
+            <td>{{i.name}}</td>
+            <td>{{i.time}}</td>
+            <td>{{i.teacher}}</td>
+            <td>{{i.teacher.degree}}</td>
+            <td>{{i.fee}}</td>
+            <td><button class="btn btn-info"><a href="{% url 'edit_tuition' i.id %}">Edit</a></button></td>
+            <td><button class="btn btn-danger"><a href="{% url 'delete_tuition' i.id %}">Delete</a></button></td>
+          </tr>
+          {% endfor %}
+         
+        </tbody>
+      </table>
+</div>
+{% endif %}
+{% endblock %}

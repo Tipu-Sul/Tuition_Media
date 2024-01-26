@@ -31,22 +31,22 @@
 <br>
 <div class="row w-100">
   {% for i in data%}
-  <div class="card col-lg-3 col-md-6 col-sm-12 gap-5 mx-auto mt-5 box-shadows anim" style="width: 19rem;">
+  <div class="card col-lg-3 col-md-6 col-sm-12 gap-5 mx-auto mt-5 box-shadows anim" style="width: 25rem;">
     <img src="{{i.teacher.image.url}}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Teacher:{{i.teacher}}</h5>
-      <h6 class="card-title">Teacher's Degree:{{i.teacher.degree}}</h6>
+   
     
-    </div>
+    
     <ul class="list-group list-group-flush">
+      <li class="list-group-item"><h5 class="card-title">Teacher:{{i.teacher}}</h5></li>
+      <li class="list-group-item"><h6 class="card-title">Teacher's Degree:{{i.teacher.degree}}</h6></li>
       <li class="list-group-item">Class : {{i.name}}</li>
       <li class="list-group-item">Time : {{i.time}}</li>
       <li class="list-group-item">Subject : {{i.subject}}</li>
       <li class="list-group-item">Fee : {{i.fee}}</li>
     </ul>
-    <div class="card-body">
+   
       <a href="{% url 'teacher_detail' i.teacher.id %}" class="btn btn-info card-link">Teacher Details</a>
-    </div>
+    
   </div>
   {% endfor %}
   </div>

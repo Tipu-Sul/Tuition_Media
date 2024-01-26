@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from. constant import GENDER,STAR
+from teacher.models import Teacher
 
 # Create your models here.
 
@@ -22,6 +23,7 @@ class Student(models.Model):
     
 class TuitionReview(models.Model):
     tuition=models.ForeignKey('tuition.Tuition', related_name="review", on_delete=models.CASCADE)
+    teacher_id=models.IntegerField(null=True,blank=True)
     name=models.CharField(max_length=50)
     email=models.EmailField()
     body=models.TextField(null=True, blank=True)

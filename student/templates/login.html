@@ -1,0 +1,29 @@
+{% extends 'base.html' %} 
+
+{% load static %} 
+{% load crispy_forms_tags %} 
+{% block head_title %}signup{% endblock %} 
+{% block content %}
+<h2 class="text-center mt-4">{{ type }} Page</h2>
+<div class="row d-flex flex-wrap justify-content-center gap-5 align-items-center mt-5 mx-auto ">
+
+    <div class="col-lg-5 col-md-5 col-sm-12">
+    
+        <img src="{% static 'login-7.png' %}" class="w-75" alt="">
+
+    </div>
+    <div class="col-lg-5 col-md-5 col-sm-12">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <img src="{% static 'human.png' %}" class="w-25 align-items-center" alt="">
+            {{ form | crispy }}
+            <button class="btn btn-primary" type="submit">Login</button>
+            {% if request.user.is_authenticated %}
+            <button class="btn btn-info"><a href="{% url 'profile' %}">Cancel</a></button>
+            {% endif %}
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

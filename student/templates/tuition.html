@@ -1,0 +1,53 @@
+{% extends 'base.html' %} 
+
+
+
+{% load static %} 
+{% load crispy_forms_tags %} 
+{% block head_title %}signup{% endblock %} 
+{% block content %}
+<h2 class="text-center mt-4 text-bold">Tuition View Page</h2>
+<br>
+<div class="row d-flex flex-wrap " style="width: 100%; margin: auto;">
+    <div class="col-12 text-center justify-content-center">
+      {% for i in data2 %}
+      <button class="btn btn-outline-primary mx-2 mt-3 text-white"><a class="text-decoration-none text-black" href="{% url 'class_wise_home' i.slug %}">{{i.class_name}}</a></button>
+      {% endfor %}
+      <button class="btn btn-outline-primary mx-3 mt-3 "><a  class="text-decoration-none text-dark" href="{% url 'tuition' %}">All</a></button>
+    </div>
+  </div>
+  
+
+
+<br>
+<div>
+ 
+<h3 class="text-center w-100 ">All Tuition Information</h3>
+</div>
+ 
+<div class="text-center m-auto w-100">
+<small class="fw-bold ">  {{ data | length }} Results found</small>
+</div>
+<br>
+<div class="row w-100">
+  {% for i in data%}
+  <div class="card col-lg-3 col-md-6 col-sm-12 gap-5 mx-auto mt-5 box-shadows anim" style="width: 19rem;">
+    <img src="{{i.teacher.image.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Teacher:{{i.teacher}}</h5>
+      <h6 class="card-title">Teacher's Degree:{{i.teacher.degree}}</h6>
+    
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Class : {{i.name}}</li>
+      <li class="list-group-item">Time : {{i.time}}</li>
+      <li class="list-group-item">Subject : {{i.subject}}</li>
+      <li class="list-group-item">Fee : {{i.fee}}</li>
+    </ul>
+    <div class="card-body">
+      <a href="{% url 'teacher_detail' i.teacher.id %}" class="btn btn-info card-link">Teacher Details</a>
+    </div>
+  </div>
+  {% endfor %}
+  </div>
+{% endblock %}

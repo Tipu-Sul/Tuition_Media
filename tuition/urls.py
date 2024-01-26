@@ -6,4 +6,5 @@ urlpatterns = [
     path('edit_tuition/<int:id>/', views.EditTuitionView.as_view(),name='edit_tuition'),
     path('delete_tuition/<int:id>/', views.DeleteTuitionView.as_view(),name='delete_tuition'),
     path('apply_tuition/',views.TuitionApplyView.as_view(),name='apply'),
+    path('contuct_us/',views.ContactUsView.as_view(),name='contact'),
 ]

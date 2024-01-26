@@ -23,10 +23,11 @@ from student.views import Homeview,home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Homeview.as_view(),name='home'),
-    path('category/<slug:category_slug>/', Homeview.as_view(),name='class_wise_home'),
+    # path('category/<slug:category_slug>/', Homeview.as_view(),name='class_wise_home'),
     # path('', home,name='home'),
     # path('category/<slug:category_slug>/', home,name='class_wise_home'),
     path('student/', include('student.urls')),
     path('tuition/', include('tuition.urls')),
+    path('teacher/', include('teacher.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

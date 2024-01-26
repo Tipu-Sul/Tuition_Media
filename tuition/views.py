@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from django.views.generic import CreateView,UpdateView,DeleteView,FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from.forms import AddTuitionForm,EditTuitionForm,ApplyTuitionForm
+from.forms import AddTuitionForm,EditTuitionForm,ApplyTuitionForm,ContactForm
 from.models import Tuition,ApplyTuition
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -30,40 +30,31 @@ class DeleteTuitionView(LoginRequiredMixin,DeleteView):
     success_url=reverse_lazy('profile')
     pk_url_kwarg='id'
 
-# class TuitionApplyView(FormView):
-#     template_name='apply_tuition.html'
-#     model=ApplyTuition
-#     form_class = ApplyTuitionForm
-#     success_url = reverse_lazy('profile')
+
     
-#     def get(self,request, *args, **kwargs):
-#         form=self.form_class()
-#         return render(request,self.template_name,{'form':form})
-    
-#     def post(self,request, *args, **kwargs):
-#         form=self.form_class(request.POST)
-#         if form.is_valid():
-#             form.save(commit=False)
-#             student_class_value=form.cleaned_data['student_class']
-#             student_class_instance = get_object_or_404(StudentClass, class_name=student_class_value)
-#             apply=ApplyTuition.objects.create(
-#                 student=self.request.user,
-#                 class_name=student_class_instance,
-#                 )
-#             form.save()
-#             apply.save()
-#             messages.success(request,'Apply sucessfull,wait for confirmation mail')
-#             return HttpResponseRedirect(self.get_success_url())
-#         else:
-#             for _, error in form.errors.items():
-#                 messages.warning(request, error)
-#             return self.form_invalid(form)
+class ContactUsView(FormView):
+    template_name = 'contact.html'
+    form_class = ContactForm
+    success_url = reverse_lazy('contact')
+
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, 'Thanks to reach us. Our support team will contact you soon. Disscuss there everything . Or You also can contuct us by the beside email and phone number')
+        return HttpResponseRedirect(self.get_success_url())
+
+    def form_invalid(self, form):
+        # Handle form errors
+        for _, error in form.errors.items():
+            messages.warning(self.request, error)
+            return self.form_invalid(form)
+
+         
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["type"] = "Tuition Apply"
+        return context
         
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context["type"] = "Tuition Apply"
-#         return context
-    
+
 class TuitionApplyView(FormView):
     template_name = 'apply_tuition.html'
     form_class = ApplyTuitionForm
@@ -82,11 +73,7 @@ class TuitionApplyView(FormView):
             messages.warning(self.request, error)
             return self.form_invalid(form)
 
-         
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["type"] = "Tuition Apply"
+        context["type"] = "Contact Us"
         return context
-        
-
-

@@ -4,6 +4,6 @@
   <h1>Are yo sure ,you want to delete</h1>
   {% csrf_token %} {{form | crispy}}
   <button class="btn btn-warning">Delete</button>
-  <button class="btn btn-info"><a href="{% url 'profile' %}">Cancel</a></button>
+  <button class="btn btn-info"><a class="text-decoration-none text-black" href="{% url 'profile' %}">Cancel</a></button>
 </form>
 {% endblock %}

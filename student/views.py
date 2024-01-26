@@ -25,6 +25,23 @@ from. models import StudentClass,Student,TuitionReview
 # Create your views here.
 class Homeview(TemplateView):
     template_name="home.html"
+    # def get_context_data(self, **kwargs):
+    #     context=super().get_context_data(**kwargs)
+    #     class_slug=self.kwargs.get('category_slug') 
+    #     data=Tuition.objects.all()
+    #     class_category=StudentClass.objects.all()
+
+    #     if class_slug:
+    #         category=get_object_or_404(StudentClass,slug=class_slug)
+    #         data=data.filter(name=category)
+    #     context['data']=data
+    #     context['data2']=class_category
+    #     context['data3']=TuitionReview.objects.all()
+    #     return context
+
+class TuitionView(TemplateView):
+    template_name="tuition.html"
+
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
         class_slug=self.kwargs.get('category_slug') 
@@ -38,7 +55,7 @@ class Homeview(TemplateView):
         context['data2']=class_category
         context['data3']=TuitionReview.objects.all()
         return context
-    
+
 def home(request,category_slug=None):
     data=Tuition.objects.all()
     if category_slug is not None:
@@ -60,8 +77,8 @@ class StudentRegisterView(FormView):
             print('token :',token)
             uid=urlsafe_base64_encode(force_bytes(user.pk))
             print('uid :',uid)
-            # confirm_link=f"http://127.0.0.1:8000/student/active/{uid}/{token}"
-            confirm_link=f"https://success-tuition.onrender.com/student/active/{uid}/{token}"
+            confirm_link=f"http://127.0.0.1:8000/student/active/{uid}/{token}"
+            # confirm_link=f"https://success-tuition.onrender.com/student/active/{uid}/{token}"
             email_subject="Confirm Your Email"
             email_body=render_to_string('confirm_mail.html',{'confirm_link': confirm_link})
             email=EmailMultiAlternatives(email_subject,"",to=[user.email])
@@ -96,7 +113,7 @@ def ActiveStudent(request,uid64,token):
         return redirect('signup')
 
 class StudentLoginView(LoginView):
-    template_name='signup.html'
+    template_name='login.html'
     def get_success_url(self):
         messages.success(self.request,'Login Successfully')
         return '/student/profile/'
@@ -141,7 +158,7 @@ class StudentProfileView(LoginRequiredMixin,ListView):
 
 
 class StudentUpdateView(LoginRequiredMixin,View):
-    template_name='signup.html'
+    template_name='update.html'
     def get(self, request):
         form=StudentUpdateForm(instance=request.user)
         return render(request,self.template_name,{'form':form})
@@ -169,7 +186,7 @@ def PasswordUpdateView(request):
             return redirect('profile')
     else:
         form=PasswordChangeForm(user=request.user)
-    return render(request,'signup.html',{'form':form,'type':'PasswordChange'})
+    return render(request,'form.html',{'form':form,'type':'PasswordChange'})
 
 
 
@@ -184,6 +201,7 @@ def TuitionReviewView(request,id):
             star=form.cleaned_data['star']
             review=TuitionReview.objects.create(
                 tuition=subject,
+                teacher_id=id,
                 name=request.user.first_name,
                 email=request.user.email,
                 body=text,
@@ -194,5 +212,5 @@ def TuitionReviewView(request,id):
             return redirect('profile')
     else:
         form=TuitionReviewForm()
-    return render(request,'signup.html',{'form':form,'type':'Review'})
+    return render(request,'form.html',{'form':form,'type':'Review'})
 

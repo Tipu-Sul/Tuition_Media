@@ -26,3 +26,4 @@ class ApplyTuitionAdmin(admin.ModelAdmin):
 admin.site.register(models.ApplyTuition, ApplyTuitionAdmin)
 admin.site.register(models.Tuition,TuitionSubjectAdmin)
 admin.site.register(models.TuitionSubject)
+admin.site.register(models.ContactUs)

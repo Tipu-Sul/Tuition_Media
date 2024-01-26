@@ -1,0 +1,114 @@
+{% load static %}
+<!-- <div class="row">
+
+  <nav class="navbar navbar-expand-md bg-body-tertiary p-0 m-0 col-lg-12 col-md-12 col-sm-12" >
+    <div class="container-fluid bg-info-subtle">
+      <img
+        src="{% static 'success.webp' %}"
+        style="height: 60px; width: 50px"
+        alt=""
+      />
+      <h1>
+        <a class="navbar-brand text-body-emphasis" style="font-size: 30px; font-weight: 700;" href="#">Success Tuition</a>
+      </h1>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'apply_teacher' %}">Tuition Job</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'tuition' %}">Tuition Dettails</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+          </li>
+        
+        </ul>
+        <form class="d-flex">
+  
+          {% if request.user.is_authenticated %}
+          <div class="dropdown">
+            <button class="btn btn-outline-success dropdown-toggle mx-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="text-decoration-none" href="{% url 'profile' %}">Profile</a>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'profile' %}">View Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'update' %}">Edit Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'apply' %}">Apply for Tuition</a></li>
+              <li><a class="dropdown-item" href="{% url 'update_password' %}">Change Password</a></li>
+            </ul>
+          </div>
+          <button class="btn btn-outline-success" ><a class="text-decoration-none" href="{% url 'logout' %}">Logout</a></button>
+        {% else %}
+          <button class="btn btn-outline-success mx-3"><a class="text-decoration-none" href="{% url 'login' %}">Login</a></button>
+          <button class="btn btn-outline-success"><a class="text-decoration-none" href="{% url 'signup' %}">SignUp</a></button>
+        {% endif %}
+  
+        </form>
+      </div>
+    </div>
+  </nav>
+
+</div> -->
+
+<nav class="navbar navbar-expand-md bg-body-tertiary p-0 fixed-top">
+  <div class="container-fluid bg-primary-subtle">
+    <img
+    src="{% static 'success.webp' %}"
+    style="height: 60px; width: 50px"
+    alt=""/>
+    <a class="navbar-brand" style="font-size: 30px; font-weight: 700;" href="#">SuccessTuition</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'apply_teacher' %}">Tuition Job</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'tuition' %}">Tuition Dettails</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        {% if request.user.is_authenticated %}
+        <div class="dropdown">
+          <button class="btn btn-outline-success dropdown-toggle mx-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="text-decoration-none text-dark" href="{% url 'profile' %}">Profile</a>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'profile' %}">View Profile</a></li>
+            <li><a class="dropdown-item" href="{% url 'update' %}">Edit Profile</a></li>
+            <li><a class="dropdown-item" href="{% url 'apply' %}">Apply for Tuition</a></li>
+            <li><a class="dropdown-item" href="{% url 'update_password' %}">Change Password</a></li>
+          </ul>
+        </div>
+        <button class="btn btn-outline-success" ><a class="text-decoration-none text-dark" href="{% url 'logout' %}">Logout</a></button>
+      {% else %}
+        <button class="btn btn-outline-success mx-3"><a class="text-decoration-none" href="{% url 'login' %}">Login</a></button>
+        <button class="btn btn-outline-success"><a class="text-decoration-none" href="{% url 'signup' %}">SignUp</a></button>
+      {% endif %}
+      </form>
+    </div>
+  </div>
+</nav>

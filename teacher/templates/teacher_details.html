@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block content %} {% load crispy_forms_tags %}
+<div class="row d-flex flex-wrap m-3 mx-auto">
+  <div class="card bg-success-subtle col-lg-5 col-md-5 col-sm-12 mx-auto mb-3" >
+    <img src="{{teacherdetails.teacher.image.url}}" class="card-img-top p-2" alt="..."style="height:400px;" />
+  </div>
+  <div class="card bg-success-subtle col-lg-5 col-md-5 col-sm-12 mx-auto mb-3" >
+    <div class="card-body">
+        <h5 class="card-title">Teacher Id       : {{teacherdetails.teacher.id}}</h5>
+        <h5 class="card-title">Name             : {{teacherdetails.teacher.user.first_name}} {{ teacher.teacher.user.last_name}}</h5>
+        <p class="card-title">Gender            : {{teacherdetails.teacher.gender}}</p>
+        <p class="card-title">Institution       : {{teacherdetails.instituition}}</p>
+        <p class="card-title">Background medium : {{teacherdetails.background_medium}}</p>
+        <p class="card-title">Subject           : {{teacherdetails.subject}}</p>       
+        <p class="card-title">Qualification     : {{teacherdetails.qualification}}</p>
+        <p class="card-title">Phone             : {{teacherdetails.teacher.mobile_no}}</p>
+        <p class="card-title">Email             : {{teacherdetails.teacher.user.email}}</p>
+        <p class="card-title">Present Address   : {{teacherdetails.present_location}}</p>
+        <p class="card-title">Parmanent Address : {{teacherdetails.parmanent_address}}</p>
+        <p class="card-title">Prefered Class    : {{teacherdetails.preferred_classes}}</p>
+       
+    </div>
+  </div>
+</div>
+<br>
+
+{% if data %}
+<div class="card">
+  <div class="card-header">
+    Review
+  </div>
+  {% for dt in data %}
+  <div class="card-body">
+    <h5 class="card-title">{{dt.name}}</h5>
+    <p class="card-text">{{dt.body}}</p>
+    <p class="card-text">{{dt.star}}</p>
+    <p class="card-text">{{dt.time}}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

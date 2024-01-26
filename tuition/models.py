@@ -26,3 +26,12 @@ class ApplyTuition(models.Model):
     is_approved=models.BooleanField(default=False)
     def __str__(self):
         return self.student.first_name
+    
+class ContactUs(models.Model):
+    name=models.CharField(max_length=100)
+    email=models.EmailField(max_length=60)
+    phone=models.CharField(max_length=14)
+    address=models.CharField(max_length=150)
+    comment=models.TextField(null=True, blank=True)
+    def __str__(self):
+        return self.name

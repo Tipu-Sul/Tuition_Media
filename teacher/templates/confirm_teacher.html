@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+
+{% load static %} 
+{% load crispy_forms_tags %} 
+{% block head_title %}signup{% endblock %} 
+{% block content %}
+
+<div class="d-flex flex-wrap align-items-start mt-5 justify-content-center mx-auto">
+    <h2>Your application is confirmed.</h2>
+    <h3> The authority will contract with you.</h3>
+</br>
+</br>
+    
+        
+    <img src="{% static 'thank_you.jpg' %}" class="w-75 mx-5" alt="">
+</br>
+</br>
+    <h1 class="text-info">@ Success Tuition Team.</h1> 
+ 
+
+</div>
+
+{% endblock %}

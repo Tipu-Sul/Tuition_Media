@@ -1,5 +1,5 @@
 from django import forms
-from.models import Tuition,ApplyTuition
+from.models import Tuition,ApplyTuition,ContactUs
 
 class AddTuitionForm(forms.ModelForm):
     class Meta:
@@ -15,3 +15,9 @@ class ApplyTuitionForm(forms.ModelForm):
    class Meta:
        model=ApplyTuition
        fields=['class_name','subject']
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model=ContactUs
+        fields='__all__'
+

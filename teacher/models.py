@@ -15,3 +15,17 @@ class Teacher(models.Model):
     degree=models.CharField(max_length=50,null=True,blank=True)
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
+
+class TeacherDetails(models.Model):
+    teacher=models.ForeignKey(Teacher,on_delete=models.CASCADE)
+    instituition=models.CharField(max_length=60)
+    background_medium=models.CharField(max_length=60)
+    subject=models.CharField(max_length=60)
+    qualification=models.CharField(max_length=60)
+    present_location=models.CharField(max_length=60)
+    permanent_address=models.CharField(max_length=60)
+    preferred_classes=models.CharField(max_length=60)
+    def __str__(self):
+        return self.teacher.user.first_name
+
+                            

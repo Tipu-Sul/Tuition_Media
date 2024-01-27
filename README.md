@@ -23,3 +23,6 @@ Tution Reviews:
 
 Contact:
   User can try to contact with the support.
+
+Tuition Job:
+  User can apply for tuition job.
